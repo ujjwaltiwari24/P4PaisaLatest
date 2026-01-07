@@ -72,7 +72,7 @@ export default function DailyStreak({ userData, close }) {
 
       {/* FOOTER HINT */}
       <p className="ds-hint">
-        Missing a day and your streak resets. Claim daily to reach Day 7 rewards.
+        Miss a day and your streak resets. Claim daily to reach Day 7 rewards.
       </p>
     </div>
   );
