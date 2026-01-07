@@ -1,0 +1,339 @@
+/* ================= DASHBOARD ================= */
+
+.dash-section {
+  margin-bottom: 48px;
+}
+
+/* ================= HERO ================= */
+
+.hero-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    rgba(127,91,255,.28),
+    rgba(127,91,255,.08)
+  );
+  border: 1px solid rgba(127,91,255,.45);
+  border-radius: 24px;
+  padding: 28px;
+  gap: 20px;
+}
+
+.hero-left h2 {
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.hero-left p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.hero-balance {
+  text-align: right;
+}
+
+.hero-balance span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.hero-balance strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--violet);
+}
+
+.hero-balance small {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ================= DAILY ================= */
+
+.daily-card {
+  background: var(--bg-card);
+  border-radius: 22px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.daily-info {
+  max-width: 520px;
+}
+
+.daily-badge {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--yellow);
+}
+
+.daily-info p {
+  margin-top: 8px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ================= SECTION HEADER ================= */
+
+.section-header {
+  margin-bottom: 18px;
+}
+
+.section-header h3 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.section-header p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ================= EARN GRID ================= */
+
+.earn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.earn-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.05),
+    var(--bg-card)
+  );
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.earn-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+}
+
+.earn-card h4 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.earn-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+/* ================= ICONS ================= */
+
+.earn-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.earn-icon.spin {
+  background: radial-gradient(circle at top, #9f85ff, #5a43d6);
+}
+.earn-icon.spin::after {
+  content: "⟳";
+  font-size: 30px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.earn-icon.ads {
+  background: radial-gradient(circle at top, #3ce98a, #16a34a);
+}
+.earn-icon.ads::after {
+  content: "▶";
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.earn-icon.captcha {
+  background: radial-gradient(circle at top, #ffd966, #f39c12);
+}
+.earn-icon.captcha::after {
+  content: "✔";
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.earn-icon.refer {
+  background: radial-gradient(circle at top, #ff8b8b, #ff5f6d);
+}
+.earn-icon.refer::after {
+  content: "⇄";
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+}
+
+/* ================= BUTTON ================= */
+
+.earn-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg,var(--violet),var(--violet-dark));
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* ================= ABOUT ================= */
+
+.about-box {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.04),
+    var(--bg-card)
+  );
+  border-radius: 24px;
+  padding: 30px;
+  border: 1px solid var(--border);
+}
+
+.about-box h3 {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.about-subtitle {
+  margin-top: 6px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.about-text-block {
+  margin-top: 18px;
+}
+
+.about-text-block p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+/* Steps */
+.about-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.about-steps div {
+  background: var(--bg-surface);
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.about-steps strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.about-steps span {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+/* Trust points */
+.about-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.about-trust span {
+  font-size: 13px;
+  color: var(--green);
+  background: rgba(46,204,113,.12);
+  border: 1px solid rgba(46,204,113,.4);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .hero-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+  }
+
+  .hero-left h2 {
+    font-size: 19px;
+  }
+
+  .hero-balance {
+    width: 100%;
+    text-align: left;
+    margin-top: 14px;
+  }
+
+  .hero-balance strong {
+    font-size: 26px;
+  }
+
+  .daily-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .daily-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .earn-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .earn-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .earn-icon::after {
+    font-size: 24px;
+  }
+
+  .about-box {
+    padding: 22px;
+  }
+}

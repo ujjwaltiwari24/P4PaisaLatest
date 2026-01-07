@@ -1,0 +1,170 @@
+/* ================= REFER PAGE ================= */
+
+.refer-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 14px;
+  background: radial-gradient(
+    circle at top,
+    rgba(127, 91, 255, 0.12),
+    transparent 60%
+  );
+}
+
+/* ================= CARD ================= */
+
+.refer-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 24px 20px 26px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.55);
+}
+
+/* ================= HEADER ================= */
+
+.refer-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.refer-header h2 {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.refer-header p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ================= SECTION ================= */
+
+.refer-section {
+  margin-bottom: 22px;
+}
+
+.refer-section h4 {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* ================= REFER CODE ================= */
+
+.refer-code-box {
+  background: linear-gradient(
+    135deg,
+    rgba(127,91,255,0.22),
+    rgba(127,91,255,0.08)
+  );
+  border: 1px dashed rgba(127,91,255,0.6);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--violet);
+  letter-spacing: 2px;
+  user-select: all;
+}
+
+/* ================= INPUT ================= */
+
+.refer-section input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.refer-section input:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(127,91,255,0.25);
+}
+
+.refer-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ================= MESSAGE ================= */
+
+.refer-msg {
+  margin: 14px 0;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(46,204,113,0.15);
+  border: 1px solid rgba(46,204,113,0.4);
+  color: var(--green);
+  font-size: 13px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ================= TRUST ================= */
+
+.refer-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.refer-trust span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ================= BUTTON SPACING ================= */
+
+.refer-card .p4-btn {
+  margin-top: 12px;
+}
+
+/* ================= MOBILE OPTIMIZATION ================= */
+
+@media (max-width: 480px) {
+  .refer-card {
+    padding: 22px 16px 24px;
+    border-radius: 20px;
+  }
+
+  .refer-header h2 {
+    font-size: 20px;
+  }
+
+  .refer-header p {
+    font-size: 13px;
+  }
+
+  .refer-code-box {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .refer-section h4 {
+    font-size: 14px;
+  }
+
+  .refer-section input {
+    padding: 13px;
+    font-size: 14px;
+  }
+}

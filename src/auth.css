@@ -1,0 +1,139 @@
+/* ================= AUTH PAGE ================= */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: radial-gradient(
+    circle at top,
+    rgba(127, 91, 255, 0.12),
+    transparent 60%
+  );
+}
+
+/* CARD */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+/* BRAND */
+.auth-brand {
+  text-align: center;
+  padding: 28px 20px 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(127, 91, 255, 0.25),
+    rgba(127, 91, 255, 0.05)
+  );
+  border-bottom: 1px solid var(--border);
+}
+
+.auth-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--violet), var(--violet-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(127, 91, 255, 0.6);
+}
+
+.auth-brand h1 {
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.auth-brand p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* CONTENT */
+.auth-content {
+  padding: 26px 22px 28px;
+  text-align: center;
+}
+
+.auth-content h2 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.auth-subtext {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+/* GOOGLE BUTTON */
+.google-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #111;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.google-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.google-btn:hover {
+  background: #f5f5f5;
+}
+
+/* TRUST */
+.auth-trust {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--green);
+}
+
+/* LEGAL */
+.auth-legal {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.auth-legal span {
+  color: var(--violet);
+  cursor: pointer;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 420px) {
+  .auth-content {
+    padding: 22px 18px 24px;
+  }
+
+  .auth-brand h1 {
+    font-size: 20px;
+  }
+}

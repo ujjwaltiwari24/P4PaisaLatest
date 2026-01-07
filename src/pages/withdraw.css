@@ -1,0 +1,31 @@
+.withdraw-card {
+  background: linear-gradient(
+    180deg,
+    rgba(46,204,113,0.15),
+    rgba(46,204,113,0.05)
+  );
+  border: 1px solid rgba(46,204,113,0.4);
+  border-radius: 18px;
+  padding: 22px;
+  text-align: center;
+}
+
+.withdraw-info {
+  font-size: 14px;
+  margin: 14px 0;
+}
+
+.withdraw-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.withdraw-msg {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
