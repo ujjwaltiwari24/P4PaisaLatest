@@ -68,3 +68,130 @@
     gap: 26px;
   }
 }
+/* ================= FOOTER ================= */
+
+.ms-footer {
+  background: linear-gradient(180deg, rgba(127, 91, 255, 0.05), rgba(46, 204, 113, 0.05));
+  border-top: 1px solid var(--border);
+  padding: 40px 20px 20px;
+  margin-top: 60px;
+}
+
+.ms-footer-container {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+/* ================= FOOTER BRAND ================= */
+
+.ms-footer-brand h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  color: var(--text-main);
+}
+
+.ms-footer-brand p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ================= FOOTER COLUMN ================= */
+
+.ms-footer-col h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: var(--text-main);
+}
+
+.ms-footer-col a,
+.ms-footer-col button {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+}
+
+.ms-footer-col a:last-child,
+.ms-footer-col button:last-child {
+  margin-bottom: 0;
+}
+
+.ms-footer-col a:hover,
+.ms-footer-col button:hover {
+  color: var(--violet);
+}
+
+/* ================= FOOTER BOTTOM ================= */
+
+.ms-footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .ms-footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .ms-footer {
+    padding: 30px 16px 16px;
+    margin-top: 40px;
+  }
+
+  .ms-footer-col h4 {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .ms-footer-col a,
+  .ms-footer-col button {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ms-footer-container {
+    gap: 24px;
+  }
+
+  .ms-footer-brand h3 {
+    font-size: 18px;
+  }
+
+  .ms-footer-brand p {
+    font-size: 12px;
+  }
+
+  .ms-footer-col h4 {
+    font-size: 13px;
+  }
+
+  .ms-footer-col a,
+  .ms-footer-col button {
+    font-size: 11px;
+  }
+}

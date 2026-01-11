@@ -1,18 +1,31 @@
 import "./profile.css";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { useState } from "react";
+import Withdraw from "./Withdraw";
 
-export default function Profile({ userData, withdrawConfig, goHome }) {
+export default function Profile({ userData, goHome }) {
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+
   const logout = async () => {
     await signOut(auth);
     window.location.reload();
   };
 
-  const withdrawEnabled = withdrawConfig?.enabled === true;
-  const minCoins = withdrawConfig?.minCoins || 0;
+  // 1000 coins = 10 rs conversion
+  const rupeeValue = (userData.balance / 1000 * 10).toFixed(2);
 
-  const canWithdraw =
-    withdrawEnabled && userData.balance >= minCoins;
+  const handleOpenWithdraw = () => {
+    setShowWithdrawModal(true);
+  };
+
+  const handleCloseWithdraw = () => {
+    setShowWithdrawModal(false);
+  };
+
+  if (showWithdrawModal) {
+    return <Withdraw userData={userData} goBack={handleCloseWithdraw} />;
+  }
 
   return (
     <div className="profile-page">
@@ -27,57 +40,41 @@ export default function Profile({ userData, withdrawConfig, goHome }) {
           <p className="profile-email">{userData.email}</p>
         </div>
 
-        {/* BALANCE */}
+        {/* BALANCE SECTION */}
         <div className="profile-balance">
-          <p className="balance-label">Total Balance</p>
+          <div className="balance-top">
+            <p className="balance-label">Your Balance</p>
+            <span className="balance-badge">Active</span>
+          </div>
           <p className="balance-value">
             {userData.balance} <span>Coins</span>
           </p>
+          <p className="balance-equivalent">= ₹{rupeeValue}</p>
+          <p className="balance-info">1000 coins = ₹10</p>
         </div>
-
-        {/* WITHDRAW INFO */}
-        {withdrawConfig && (
-          <div className="withdraw-box">
-            <p>
-              Value of 1 coin: <strong>₹{withdrawConfig.coinValue}</strong>
-            </p>
-            <p>
-              Minimum Withdraw:{" "}
-              <strong>{withdrawConfig.minCoins} Coins</strong>
-            </p>
-
-            {!withdrawEnabled && (
-              <p className="withdraw-note">
-                {withdrawConfig.message}
-              </p>
-            )}
-          </div>
-        )}
 
         {/* WITHDRAW BUTTON */}
         <button
-          className={`p4-btn full ${canWithdraw ? "" : "secondary"}`}
-          disabled={!canWithdraw}
-          onClick={() => {
-            if (!canWithdraw) return;
-            alert("Withdraw request feature will be enabled soon 🚀");
-          }}
+          className="withdraw-btn full active"
+          onClick={handleOpenWithdraw}
         >
-          {withdrawEnabled
-            ? canWithdraw
-              ? "Request Withdraw"
-              : "Minimum Balance Not Met"
-            : "Withdraw Disabled"}
+          <span className="btn-icon">↑</span>
+          Withdraw Now
         </button>
+
+        {/* DIVIDER */}
+        <div className="profile-divider"></div>
 
         {/* ACTIONS */}
         <div className="profile-actions">
-          <button className="p4-btn full" onClick={goHome}>
-            Back to Dashboard
+          <button className="action-btn" onClick={goHome}>
+            <span className="btn-icon">⌂</span>
+            <span>Back to Dashboard</span>
           </button>
 
-          <button className="p4-btn danger full" onClick={logout}>
-            Logout
+          <button className="action-btn danger" onClick={logout}>
+            <span className="btn-icon">⊗</span>
+            <span>Logout</span>
           </button>
         </div>
       </div>

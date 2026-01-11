@@ -6,10 +6,10 @@
   align-items: center;
   justify-content: center;
   padding: 28px 16px;
-  background: radial-gradient(
-    circle at top,
-    rgba(127, 91, 255, 0.1),
-    transparent 65%
+  background: linear-gradient(
+    135deg,
+    rgba(127, 91, 255, 0.05),
+    rgba(46, 204, 113, 0.05)
   );
 }
 
@@ -17,25 +17,28 @@
 
 .profile-card {
   width: 100%;
-  max-width: 390px;
+  max-width: 420px;
   background: var(--bg-card);
-  border-radius: 24px;
-  padding: 28px 24px 30px;
+  border-radius: 28px;
+  padding: 32px 24px;
   border: 1px solid var(--border);
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
 }
 
 /* ================= HEADER ================= */
 
 .profile-header {
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
 }
 
 .profile-avatar {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 14px;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 16px;
   border-radius: 50%;
   background: linear-gradient(
     135deg,
@@ -45,16 +48,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 900;
   color: #fff;
-  box-shadow: 0 14px 34px rgba(127, 91, 255, 0.65);
+  box-shadow: 0 16px 40px rgba(127, 91, 255, 0.5);
+  animation: avatarPulse 3s ease-in-out infinite;
+}
+
+@keyframes avatarPulse {
+  0%, 100% { box-shadow: 0 16px 40px rgba(127, 91, 255, 0.5); }
+  50% { box-shadow: 0 16px 50px rgba(127, 91, 255, 0.8); }
 }
 
 .profile-name {
-  font-size: 21px;
+  font-size: 24px;
   font-weight: 800;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
 }
 
 .profile-email {
@@ -63,109 +73,313 @@
   word-break: break-all;
 }
 
-/* ================= BALANCE ================= */
+/* ================= BALANCE SECTION ================= */
 
 .profile-balance {
-  margin: 24px 0;
-  padding: 18px 16px;
-  border-radius: 18px;
+  margin-bottom: 24px;
+  padding: 24px;
+  border-radius: 20px;
   background: linear-gradient(
     135deg,
-    rgba(127, 91, 255, 0.2),
-    rgba(127, 91, 255, 0.06)
+    rgba(127, 91, 255, 0.25),
+    rgba(127, 91, 255, 0.08)
   );
-  border: 1px solid rgba(127, 91, 255, 0.45);
+  border: 1.5px solid rgba(127, 91, 255, 0.4);
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+.profile-balance:hover {
+  border-color: rgba(127, 91, 255, 0.6);
+  background: linear-gradient(
+    135deg,
+    rgba(127, 91, 255, 0.3),
+    rgba(127, 91, 255, 0.12)
+  );
+}
+
+.balance-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
 .balance-label {
   font-size: 12px;
   color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.balance-badge {
+  font-size: 11px;
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 700;
   letter-spacing: 0.3px;
 }
 
 .balance-value {
-  margin-top: 8px;
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 900;
   color: var(--violet);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
 }
 
 .balance-value span {
   font-size: 14px;
   font-weight: 600;
-}
-
-/* ================= WITHDRAW INFO ================= */
-
-.withdraw-box {
-  margin-bottom: 20px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-}
-
-.withdraw-box p {
-  font-size: 13px;
   color: var(--text-muted);
-  margin-bottom: 6px;
 }
 
-.withdraw-box strong {
-  color: var(--text-main);
-}
-
-.withdraw-note {
-  margin-top: 6px;
-  font-size: 12px;
-  color: var(--red);
+.balance-equivalent {
+  font-size: 16px;
+  color: #2ecc71;
+  margin: 6px 0 0 0;
   font-weight: 600;
 }
 
-/* ================= BUTTONS ================= */
-
-.profile-card .p4-btn {
-  padding: 14px;
-  font-size: 14px;
-  border-radius: 14px;
+.balance-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 8px 0 0 0;
 }
 
-/* Withdraw button spacing */
-.profile-card > .p4-btn {
+/* ================= WITHDRAW MODAL ================= */
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--violet);
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  padding: 0;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--violet-dark);
+}
+
+.withdraw-title {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  color: var(--text-main);
+}
+
+.balance-display {
+  background: rgba(127, 91, 255, 0.1);
+  border: 1px solid rgba(127, 91, 255, 0.3);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-/* ================= STATS ================= */
-
-.profile-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 22px;
-}
-
-.stat-box {
-  background: var(--bg-surface);
-  border-radius: 14px;
-  padding: 14px;
-  text-align: center;
-  border: 1px solid var(--border);
-}
-
-.stat-label {
-  font-size: 12px;
+.balance-display p {
+  margin: 0;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
-.stat-value {
-  margin-top: 6px;
-  font-size: 16px;
-  font-weight: 800;
+.balance-display strong {
+  color: var(--violet);
 }
 
-.stat-value.success {
-  color: var(--green);
+.step-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ================= WITHDRAW METHODS ================= */
+
+.withdraw-methods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.method-card {
+  background: rgba(127, 91, 255, 0.08);
+  border: 2px solid rgba(127, 91, 255, 0.3);
+  border-radius: 14px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.method-card:hover {
+  background: rgba(127, 91, 255, 0.15);
+  border-color: rgba(127, 91, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.method-icon {
+  font-size: 32px;
+}
+
+.method-name {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.method-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: center;
+}
+
+/* ================= SELECTED METHOD ================= */
+
+.selected-method {
+  margin-bottom: 18px;
+}
+
+.selected-badge {
+  width: 100%;
+  background: rgba(46, 204, 113, 0.15);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  color: #2ecc71;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.selected-badge:hover {
+  background: rgba(46, 204, 113, 0.25);
+  border-color: rgba(46, 204, 113, 0.6);
+}
+
+/* ================= AMOUNT OPTIONS ================= */
+
+.amount-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.amount-card {
+  background: linear-gradient(135deg, rgba(127, 91, 255, 0.15), rgba(127, 91, 255, 0.05));
+  border: 2px solid rgba(127, 91, 255, 0.3);
+  border-radius: 12px;
+  padding: 18px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  font-family: inherit;
+}
+
+.amount-card:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(127, 91, 255, 0.25), rgba(127, 91, 255, 0.1));
+  border-color: rgba(127, 91, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(127, 91, 255, 0.2);
+}
+
+.amount-card:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.amount-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(127, 91, 255, 0.05);
+}
+
+.amount-rupees {
+  font-size: 22px;
+  font-weight: 900;
+  color: #2ecc71;
+}
+
+.amount-coins {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.lock-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 14px;
+}
+
+.exchange-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* ================= WITHDRAW BUTTON ================= */
+
+.withdraw-btn {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.withdraw-btn.active {
+  background: linear-gradient(135deg, var(--violet), var(--violet-dark));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(127, 91, 255, 0.4);
+}
+
+.withdraw-btn.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(127, 91, 255, 0.5);
+}
+
+.withdraw-btn.active:active {
+  transform: translateY(0);
+}
+
+/* ================= DIVIDER ================= */
+
+.profile-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
 }
 
 /* ================= ACTIONS ================= */
@@ -173,24 +387,89 @@
 .profile-actions {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 10px;
+  gap: 10px;
+}
+
+.btn-icon {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(127, 91, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.action-btn.danger {
+  border-color: rgba(255, 67, 54, 0.3);
+  color: #ff4336;
+}
+
+.action-btn.danger:hover {
+  background: rgba(255, 67, 54, 0.08);
+  border-color: rgba(255, 67, 54, 0.5);
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .profile-card {
-    padding: 24px 18px 26px;
+    padding: 24px 18px;
+    border-radius: 24px;
   }
 
   .profile-avatar {
-    width: 80px;
-    height: 80px;
-    font-size: 32px;
+    width: 90px;
+    height: 90px;
+    font-size: 36px;
+  }
+
+  .profile-name {
+    font-size: 22px;
   }
 
   .balance-value {
-    font-size: 24px;
+    font-size: 32px;
+  }
+
+  .withdraw-methods {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .amount-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .amount-rupees {
+    font-size: 18px;
+  }
+
+  .withdraw-btn {
+    padding: 14px;
+    font-size: 14px;
   }
 }

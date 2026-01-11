@@ -18,7 +18,7 @@ export default function Dashboard({
       <section className="dash-section">
         <div className="hero-card">
           <div className="hero-left">
-            <h2>Welcome to Money Share, {userData.name}</h2>
+            <h2>Welcome to Kamao Money, {userData.name}</h2>
             <p>
               Earn coins daily by completing simple tasks like watching ads,
               spinning the wheel, and maintaining your streak.
@@ -109,15 +109,11 @@ export default function Dashboard({
 
           <div className="about-text-block">
             <p>
-              <strong>Money Share</strong> is an online earning platform where
+              <strong>Kamao Money</strong> is an online earning platform where
               users earn coins by completing simple digital tasks.
             </p>
-
-            <p>
-              Revenue is generated through ads and shared fairly with active
-              users based on participation.
-            </p>
-
+            <p>No Investment is required to start earning.</p>
+            <p> These coins can be redeemed for real rewards via multiple withdrawal methods.</p>
             <p>
               No hidden tricks. Everything is system-driven and transparent.
             </p>

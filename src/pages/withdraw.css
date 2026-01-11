@@ -1,31 +1,472 @@
-.withdraw-card {
-  background: linear-gradient(
-    180deg,
-    rgba(46,204,113,0.15),
-    rgba(46,204,113,0.05)
-  );
-  border: 1px solid rgba(46,204,113,0.4);
-  border-radius: 18px;
-  padding: 22px;
+/* ================= WITHDRAW CONTAINER ================= */
+
+.withdraw-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================= MODAL ================= */
+
+.withdraw-modal {
+  width: 100%;
+  max-width: 450px;
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.withdraw-modal.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 400px;
+}
+
+.withdraw-modal h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 24px;
+  color: var(--text-main);
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--violet);
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  padding: 0;
+  font-weight: 600;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+
+.close-btn:hover {
+  color: var(--violet-dark);
+}
+
+.close-btn:active {
+  opacity: 0.8;
+}
+
+/* ================= SUCCESS STATE ================= */
+
+.success-icon {
+  font-size: 60px;
+  margin-bottom: 16px;
+  animation: successPulse 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.withdraw-modal.success h2 {
+  color: #2ecc71;
+  margin-bottom: 12px;
+}
+
+.success-text {
+  color: var(--text-main);
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.success-subtext {
+  color: var(--violet);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+.success-info {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin: 12px 0;
+}
+
+.redirect-text {
+  color: var(--text-muted);
+  font-size: 11px;
+  margin-top: 16px;
+}
+
+/* ================= BALANCE INFO ================= */
+
+.balance-info {
+  background: rgba(127, 91, 255, 0.1);
+  border: 1px solid rgba(127, 91, 255, 0.3);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.balance-info p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.balance-info strong {
+  color: var(--violet);
+}
+
+.balance-value {
+  font-size: 16px !important;
+  color: #2ecc71 !important;
+  font-weight: 600 !important;
+}
+
+/* ================= STEP TITLE ================= */
+
+.step-title {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ================= METHODS GRID ================= */
+
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.method-btn {
+  background: rgba(127, 91, 255, 0.08);
+  border: 2px solid rgba(127, 91, 255, 0.3);
+  border-radius: 14px;
+  padding: 16px 12px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.method-btn:hover {
+  background: rgba(127, 91, 255, 0.15);
+  border-color: rgba(127, 91, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.method-btn:active {
+  transform: translateY(0);
+}
+
+.method-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.method-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
   text-align: center;
 }
 
-.withdraw-info {
-  font-size: 14px;
-  margin: 14px 0;
+.method-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: center;
 }
 
-.withdraw-input {
+/* ================= SELECTED METHOD ================= */
+
+.selected-method-badge {
+  margin-bottom: 18px;
+}
+
+.change-method-btn {
+  width: 100%;
+  background: rgba(46, 204, 113, 0.15);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  color: #2ecc71;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.change-method-btn:hover {
+  background: rgba(46, 204, 113, 0.25);
+  border-color: rgba(46, 204, 113, 0.6);
+}
+
+.change-method-btn:active {
+  opacity: 0.8;
+}
+
+/* ================= AMOUNTS GRID ================= */
+
+.amounts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.amount-btn {
+  background: linear-gradient(135deg, rgba(127, 91, 255, 0.15), rgba(127, 91, 255, 0.05));
+  border: 2px solid rgba(127, 91, 255, 0.3);
+  border-radius: 12px;
+  padding: 18px 12px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.amount-btn:not(.disabled):hover {
+  background: linear-gradient(135deg, rgba(127, 91, 255, 0.25), rgba(127, 91, 255, 0.1));
+  border-color: rgba(127, 91, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(127, 91, 255, 0.2);
+}
+
+.amount-btn:not(.disabled):active {
+  transform: translateY(0);
+}
+
+.amount-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  background: rgba(127, 91, 255, 0.05);
+  pointer-events: auto;
+}
+
+.amount-value {
+  font-size: 22px;
+  font-weight: 900;
+  color: #2ecc71;
+}
+
+.amount-coins {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.lock {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.exchange-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* ================= WITHDRAW SUMMARY ================= */
+
+.withdraw-summary {
+  background: rgba(127, 91, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.summary-item span {
+  color: var(--text-muted);
+}
+
+.summary-item strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* ================= FORM ================= */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.form-input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(127, 91, 255, 0.3);
+  background: rgba(127, 91, 255, 0.05);
+  color: var(--text-main);
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: rgba(127, 91, 255, 0.6);
+  background: rgba(127, 91, 255, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* ================= ERROR MESSAGE ================= */
+
+.error-message {
+  background: rgba(255, 67, 54, 0.15);
+  border: 1px solid rgba(255, 67, 54, 0.3);
+  color: #ff4336;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-bottom: 12px;
+  margin-top: -4px;
+}
+
+/* ================= INFO TEXT ================= */
+
+.info-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* ================= SUBMIT BUTTON ================= */
+
+.submit-btn {
   width: 100%;
   padding: 14px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: var(--bg-surface);
+  background: linear-gradient(135deg, var(--violet), var(--violet-dark));
   color: #fff;
-  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
-.withdraw-msg {
-  font-size: 14px;
-  margin-bottom: 10px;
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(127, 91, 255, 0.4);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed !important;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 480px) {
+  .withdraw-modal {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .withdraw-modal h2 {
+    font-size: 20px;
+  }
+
+  .methods-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .amounts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .amount-value {
+    font-size: 18px;
+  }
 }

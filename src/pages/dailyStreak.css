@@ -15,6 +15,13 @@
 .ds-header h3 {
   font-size: 17px;
   font-weight: 800;
+  margin: 0;
+}
+
+.ds-streak-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 .ds-close {
@@ -23,6 +30,12 @@
   font-size: 18px;
   color: var(--text-muted);
   cursor: pointer;
+  transition: color 0.2s;
+  padding: 4px;
+}
+
+.ds-close:hover {
+  color: var(--text-main);
 }
 
 /* Timeline */
@@ -36,9 +49,10 @@
 .ds-bar {
   position: relative;
   width: 8px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   overflow: hidden;
+  min-height: 300px;
 }
 
 .ds-bar-fill {
@@ -47,7 +61,7 @@
   width: 100%;
   background: linear-gradient(180deg, #22c55e, #2ecc71);
   border-radius: 10px;
-  transition: height 0.8s cubic-bezier(.4,0,.2,1);
+  transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Days */
@@ -65,27 +79,32 @@
   gap: 14px;
   padding: 14px 16px;
   border-radius: 16px;
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border);
   transition: all 0.25s ease;
 }
 
+.ds-day-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
 /* Completed */
 .ds-day-card.completed {
-  background: rgba(46,204,113,0.12);
-  border-color: rgba(46,204,113,0.6);
+  background: rgba(46, 204, 113, 0.12);
+  border-color: rgba(46, 204, 113, 0.6);
 }
 
 /* Today (pulse glow) */
 .ds-day-card.today {
-  background: rgba(127,91,255,0.18);
-  border-color: rgba(127,91,255,0.7);
+  background: rgba(127, 91, 255, 0.18);
+  border-color: rgba(127, 91, 255, 0.7);
   animation: pulseGlow 1.8s infinite;
 }
 
 /* Locked */
 .ds-day-card.locked {
   opacity: 0.45;
+  cursor: not-allowed;
 }
 
 /* Circle */
@@ -98,28 +117,29 @@
   justify-content: center;
   font-size: 14px;
   font-weight: 900;
-  border: 2px solid rgba(255,255,255,0.25);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 /* Completed circle */
 .ds-day-card.completed .ds-day-circle {
-  background: rgba(46,204,113,0.2);
-  border-color: rgba(46,204,113,0.9);
-  color: var(--green);
+  background: rgba(46, 204, 113, 0.2);
+  border-color: rgba(46, 204, 113, 0.9);
+  color: #2ecc71;
 }
 
 /* Today circle */
 .ds-day-card.today .ds-day-circle {
-  background: rgba(127,91,255,0.25);
-  border-color: rgba(127,91,255,0.9);
+  background: rgba(127, 91, 255, 0.25);
+  border-color: rgba(127, 91, 255, 0.9);
   color: var(--violet);
 }
 
 /* Locked circle */
 .ds-day-card.locked .ds-day-circle {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Text */
@@ -140,22 +160,61 @@
   color: var(--violet);
 }
 
+/* ================= WARNING BOX ================= */
+
+.ds-warning {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: rgba(255, 193, 7, 0.15);
+  border: 1px solid rgba(255, 193, 7, 0.4);
+  border-radius: 12px;
+  color: #ffc107;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ds-warning p {
+  margin: 0;
+}
+
 /* Hint */
 .ds-hint {
-  margin-top: 18px;
+  margin-top: 16px;
   font-size: 12px;
   color: var(--text-muted);
+  text-align: center;
 }
 
 /* Pulse animation */
 @keyframes pulseGlow {
   0% {
-    box-shadow: 0 0 0 0 rgba(127,91,255,0.5);
+    box-shadow: 0 0 0 0 rgba(127, 91, 255, 0.5);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(127,91,255,0);
+    box-shadow: 0 0 0 10px rgba(127, 91, 255, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(127,91,255,0);
+    box-shadow: 0 0 0 0 rgba(127, 91, 255, 0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .ds-bar {
+    min-height: 280px;
+  }
+
+  .ds-day-circle {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .ds-day-title {
+    font-size: 12px;
+  }
+
+  .ds-day-reward {
+    font-size: 14px;
   }
 }
