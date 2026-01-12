@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from "react";
 import {
   doc,
   updateDoc,
@@ -20,14 +20,14 @@ const generateCode = () =>
 export default function Refer({
   userData,
   goBack,
-  onReferralApplied, // 🔥 SAFE PROP
+  onReferralApplied,
 }) {
   const [myCode, setMyCode] = useState(userData.referralCode || "");
   const [inputCode, setInputCode] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 🔒 LOCK STATE (MAIN FIX)
+  // Lock state (prevent multiple referrals)
   const [locked, setLocked] = useState(
     userData.referralApplied === true
   );
@@ -41,7 +41,7 @@ export default function Refer({
     let code = generateCode();
     let exists = true;
 
-    // ensure unique code
+    // Ensure unique code
     while (exists) {
       const q = query(
         collection(db, "users"),
@@ -72,40 +72,46 @@ export default function Refer({
 
     setLoading(true);
 
-    const q = query(
-      collection(db, "users"),
-      where("referralCode", "==", inputCode)
-    );
-    const snap = await getDocs(q);
+    try {
+      const q = query(
+        collection(db, "users"),
+        where("referralCode", "==", inputCode)
+      );
+      const snap = await getDocs(q);
 
-    if (snap.empty) {
-      setMessage("Referral code not found");
+      if (snap.empty) {
+        setMessage("❌ Referral code not found");
+        setLoading(false);
+        return;
+      }
+
+      const refUser = snap.docs[0];
+
+      // Give coins to referrer
+      await updateDoc(refUser.ref, {
+        balance: (refUser.data().balance || 0) + 1000,
+      });
+
+      // Give coins to referral and mark as applied
+      await updateDoc(doc(db, "users", userData.uid), {
+        balance: userData.balance + 500,
+        referredBy: inputCode,
+        referralApplied: true,
+      });
+
+      setLocked(true);
+      setMessage("🎉 Referral applied successfully! +500 coins");
+
+      // Callback
+      if (typeof onReferralApplied === "function") {
+        onReferralApplied();
+      }
+    } catch (error) {
+      console.error("Error applying referral:", error);
+      setMessage("❌ Error applying referral. Please try again.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const refUser = snap.docs[0];
-
-    // 🔥 GIVE COINS
-    await updateDoc(refUser.ref, {
-      balance: (refUser.data().balance || 0) + 1000,
-    });
-
-    await updateDoc(doc(db, "users", userData.uid), {
-      balance: userData.balance + 500,
-      referredBy: inputCode,
-      referralApplied: true,
-    });
-
-    setLocked(true);
-    setMessage("🎉 Referral applied successfully!");
-
-    // 🔥 SAFE CALLBACK
-    if (typeof onReferralApplied === "function") {
-      onReferralApplied();
-    }
-
-    setLoading(false);
   };
 
   /* ================= UI ================= */
@@ -136,15 +142,15 @@ export default function Refer({
           )}
 
           <p className="refer-hint">
-            Share this code.  
-            You earn <strong>1000 coins</strong> per referral.
+            Share this code with friends.  
+            You earn <strong>1000 coins</strong> per successful referral.
           </p>
         </div>
 
         {/* APPLY CODE */}
         {!locked && (
           <div className="refer-section">
-            <h4>🧑‍🤝‍🧑 Enter Friend’s Code</h4>
+            <h4>🧑‍🤝‍🧑 Enter Friend's Code</h4>
 
             <input
               type="text"
@@ -153,12 +159,13 @@ export default function Refer({
               onChange={(e) =>
                 setInputCode(e.target.value.toUpperCase())
               }
+              className="refer-input"
             />
 
             <button
               className="p4-btn success full"
               onClick={applyReferral}
-              disabled={loading}
+              disabled={loading || !inputCode}
             >
               {loading ? "Applying..." : "Apply Code & Earn"}
             </button>
@@ -171,13 +178,25 @@ export default function Refer({
         )}
 
         {/* MESSAGE */}
-        {message && <div className="refer-msg">{message}</div>}
+        {message && (
+          <div className={`refer-msg ${message.includes("❌") ? "error" : "success"}`}>
+            {message}
+          </div>
+        )}
+
+        {/* SUCCESS STATE */}
+        {locked && (
+          <div className="refer-success">
+            <p>✅ You've already applied a referral code</p>
+            <p>You can only use one referral code</p>
+          </div>
+        )}
 
         {/* TRUST */}
         <div className="refer-trust">
           <span>✔ One-time referral only</span>
           <span>✔ Coins credited instantly</span>
-          <span>✔ No self-referrals</span>
+          <span>✔ No self-referrals allowed</span>
         </div>
 
         {/* BACK */}
